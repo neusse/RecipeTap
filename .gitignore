@@ -1,0 +1,17 @@
+cheftap_export*.zip
+backup.ab
+app/src/main/assets/recipes.js
+build/
+*.apk
+window.xml
+cheftap-screen.png
+detail.png
+newapp.png
+detail-new.png
+final-screen.png
+data/
+__pycache__/
+*.pyc
+local.properties
+.idea/
+.vscode/
