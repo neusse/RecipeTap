@@ -5,7 +5,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 
-db_path = Path(__file__).parent / "data/neussenombox.db"
+db_path = Path(__file__).resolve().parents[1] / "data/neussenombox.db"
 if not db_path.exists():
     raise SystemExit("ChefTap snapshot database is missing")
 db = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)

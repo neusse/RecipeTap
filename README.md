@@ -54,22 +54,24 @@ The HTML export provides recipe text. For exact favorite flags, saved notes, str
 If the snapshot contains media links, recover and verify the images **before** building so the generated recipe data includes them:
 
 ```powershell
-python .\recover_photos.py
+python .\scripts\recover_photos.py
 pwsh -File .\build.ps1
 adb install -r .\build\RecipeTap.apk
-python .\push_photos.py
+python .\scripts\push_photos.py
 ```
 
-`recover_photos.py` downloads images from the URLs in your snapshot into `data/photos/`, identifies their actual format from their bytes, and fails if any image cannot be recovered. `push_photos.py` copies those files over USB to RecipeTap's app storage on the connected phone and checks the transferred filenames. These images are not bundled into the APK.
+`scripts/recover_photos.py` downloads images from the URLs in your snapshot into `data/photos/`, identifies their actual format from their bytes, and fails if any image cannot be recovered. `scripts/push_photos.py` copies those files over USB to RecipeTap's app storage on the connected phone and checks the transferred filenames. These images are not bundled into the APK.
+
+For the complete phone-assisted recovery and merge sequence, see the [ChefTap migration runbook](docs/agents/cheftap-migration.md). It identifies the actions a person must perform in ChefTap and the checks an AI assistant should run before installing an update.
 
 ## Project layout
 
 | Path | Purpose |
 | --- | --- |
 | `app/src/main/` | Android activity, manifest, and local HTML/CSS/JavaScript UI |
-| `generate_recipes.py` | Converts the owner's export and optional snapshot into the generated app asset |
+| `scripts/generate_recipes.py` | Converts the owner's export and optional snapshot into the generated app asset |
 | `build.ps1` | Builds and debug signs the APK with Android SDK tools |
-| `recover_photos.py`, `push_photos.py` | Recover and transfer the owner's recipe photos |
+| `scripts/` | All Python migration, recovery, inspection, and verification tools |
 | `data/` | Local snapshots, photos, and reports; ignored by Git |
 
 Personal exports, the snapshot database, photos, generated `recipes.js`, and APKs are intentionally excluded from Git. Check `git status` before committing if you add other local files.

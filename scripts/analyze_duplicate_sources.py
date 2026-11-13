@@ -2,7 +2,7 @@
 import sqlite3
 from pathlib import Path
 
-database = Path(__file__).parent / "data/neussenombox.db"
+database = Path(__file__).resolve().parents[1] / "data/neussenombox.db"
 if not database.is_file():
     raise SystemExit(f"Missing ChefTap snapshot: {database}")
 db = sqlite3.connect(f"file:{database}?mode=ro", uri=True)

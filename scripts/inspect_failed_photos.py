@@ -5,7 +5,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-root = Path(__file__).parent
+root = Path(__file__).resolve().parents[1]
 db = sqlite3.connect(f"file:{root / 'data/neussenombox.db'}?mode=ro", uri=True)
 missing = [(photo_id, url) for photo_id, url in db.execute(
     "select photo_id,link from media_id where date_deleted is null and link is not null limit 500"

@@ -11,7 +11,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "cheftap_export.zip"
 TARGET = ROOT / "app/src/main/assets/recipes.js"
 SNAPSHOT = ROOT / "data/neussenombox.db"

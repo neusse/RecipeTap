@@ -8,7 +8,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data/neussenombox.db"
 PHOTOS = ROOT / "data/photos"
 FAILURES = ROOT / "data/photo_failures.json"

@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parents[1]
 subprocess.run(["adb", "shell", "uiautomator", "dump", "/sdcard/window.xml"], check=True, capture_output=True)
 xml = subprocess.run(["adb", "exec-out", "cat", "/sdcard/window.xml"], check=True, capture_output=True).stdout
 root = ET.fromstring(xml)

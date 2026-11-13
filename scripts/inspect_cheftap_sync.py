@@ -4,7 +4,7 @@ import zipfile
 from pathlib import Path
 
 
-apk = Path(__file__).parent / "data/cheftap-original.apk"
+apk = Path(__file__).resolve().parents[1] / "data/cheftap-original.apk"
 if not apk.exists():
     raise SystemExit(f"Missing APK: {apk}")
 matches = set()

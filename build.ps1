@@ -6,7 +6,7 @@ $tools = Join-Path $sdk 'build-tools\36.0.0'
 $androidJar = Join-Path $sdk 'platforms\android-36\android.jar'
 $out = Join-Path $root 'build'
 New-Item -ItemType Directory -Force -Path $out, (Join-Path $out 'classes') | Out-Null
-python (Join-Path $root 'generate_recipes.py')
+python (Join-Path $root 'scripts\generate_recipes.py')
 if ($LASTEXITCODE -ne 0) { throw 'Recipe generation failed.' }
 & (Join-Path $tools 'aapt2.exe') link -o (Join-Path $out 'base.apk') --manifest (Join-Path $root 'app\src\main\AndroidManifest.xml') -I $androidJar -A (Join-Path $root 'app\src\main\assets') --min-sdk-version 26 --target-sdk-version 34
 if ($LASTEXITCODE -ne 0) { throw 'Resource packaging failed.' }

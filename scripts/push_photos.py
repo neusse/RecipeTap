@@ -5,7 +5,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-root = Path(__file__).parent
+root = Path(__file__).resolve().parents[1]
 photos = root / "data/photos"
 adb = shutil.which("adb")
 if not adb:
@@ -16,7 +16,7 @@ parser.add_argument("--limit", type=int, help="Transfer the first N images for a
 args = parser.parse_args()
 files = sorted(path for path in photos.iterdir() if re.fullmatch(r"[0-9a-fA-F-]{36}\.(png|jpg|gif|webp)", path.name))
 if not files:
-    raise SystemExit("No verified photos found. Run recover_photos.py first.")
+    raise SystemExit("No verified photos found. Run scripts/recover_photos.py first.")
 if args.limit:
     files = files[:args.limit]
 subprocess.run([adb, "shell", "mkdir", "-p", destination + "/photos"], check=True)

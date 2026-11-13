@@ -7,7 +7,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from urllib.parse import urlsplit
 
-root = Path(__file__).parent
+root = Path(__file__).resolve().parents[1]
 database = root / "data/neussenombox.db"
 if not database.exists():
     raise SystemExit(f"Missing real ChefTap snapshot: {database}")
